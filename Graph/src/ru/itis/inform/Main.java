@@ -17,5 +17,8 @@ public class Main {
         graph1.addEdge(4, 3, 2);
 
         graph1.showGraph();
+
+        graph1.RunFloyd();
+        graph1.showGraphD();
     }
 }
