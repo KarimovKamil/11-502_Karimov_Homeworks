@@ -1,14 +1,15 @@
 package ru.itis.inform;
 
-public class GraphMatrixImpl implements Graph {
+public class GraphMatrixImpl implements DirectedGraph, Graph {
 
     private static final int DEFAULT_SIZE = 50;
-    private static final int INF = 100;
+    private static final int INF = 500;
 
     private int matrix[][];
     private int dmatrix[][];
     private int verticesCount;
     private int maxSize;
+
 
     public GraphMatrixImpl() {
         initGraph(DEFAULT_SIZE);
@@ -30,11 +31,17 @@ public class GraphMatrixImpl implements Graph {
         } else throw new IllegalArgumentException();
     }
 
-    public void addEdge(int vertexFrom, int vertexTo, int weightEdge) {
-        if (vertexFrom < verticesCount && vertexTo < verticesCount && this.matrix[vertexFrom][vertexTo] == 0) {
-            this.matrix[vertexFrom][vertexTo] = weightEdge;
-            this.matrix[vertexTo][vertexFrom] = weightEdge;
+    public void addEdge(int vertexA, int vertexB, int weightEdge) {
+        if (vertexA < verticesCount && vertexB < verticesCount && this.matrix[vertexA][vertexB] == 0) {
+            this.matrix[vertexA][vertexB] = weightEdge;
+            this.matrix[vertexB][vertexA] = weightEdge;
         } else throw new IllegalArgumentException();
+    }
+
+    public void addDirectedEgde(int vertixFrom, int vertixTo, int weightEdge) {
+        if (vertixFrom < verticesCount && vertixTo < verticesCount && this.matrix[vertixFrom][vertixTo] == 0) {
+            this.matrix[vertixFrom][vertixTo] = weightEdge;
+        }
     }
 
     public void generateDMatrix() {
@@ -44,17 +51,13 @@ public class GraphMatrixImpl implements Graph {
                 if (matrix[i][j] == 0 && i != j){
                     dmatrix[i][j] = INF;
                 } else {
-                    if (i == j) {
-                        dmatrix[i][j] = 0;
-                    } else {
-                        dmatrix[i][j] = matrix[i][j];
-                    }
+                    dmatrix[i][j] = matrix[i][j];
                 }
             }
         }
     }
 
-    public void RunFloyd(){
+    public void runFloyd(){
         generateDMatrix();
         for (int k = 0; k < verticesCount; k++){
             for (int i = 0; i < verticesCount; i++){
@@ -65,7 +68,7 @@ public class GraphMatrixImpl implements Graph {
         }
     }
 
-    public void showGraph() {
+    public void showMatrix() {
         System.out.println("Adjacency matrix:");
         for (int i = 0; i < verticesCount; i++) {
             for (int j = 0; j < verticesCount - 1; j++) {
@@ -75,7 +78,7 @@ public class GraphMatrixImpl implements Graph {
         }
     }
 
-    public void showGraphD() {
+    public void showReachabilityMatrix() {
         System.out.println("Reachability matrix:");
         for (int i = 0; i < verticesCount; i++) {
             for (int j = 0; j < verticesCount - 1; j++) {
