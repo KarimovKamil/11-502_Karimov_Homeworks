@@ -51,11 +51,12 @@ public class FareyArrayImpl {
     }
 
     public void show(){
-        for(int i = 0; i < currentLength; i++) {
+        for(int i = 0; i < currentLength - 1; i++) {
+            System.out.print(array[i].getP() + "/" + array[i].getQ() + ", ");
             if ((i + 1) % 10 == 0) {
                 System.out.println();
             }
-            System.out.print(array[i].getP() + "/" + array[i].getQ() + ", ");
         }
+        System.out.print(array[currentLength - 1].getP() + "/" + array[currentLength - 1].getQ());
     }
 }
