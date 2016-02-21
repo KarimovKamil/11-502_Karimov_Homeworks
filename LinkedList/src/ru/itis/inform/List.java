@@ -1,6 +1,7 @@
 package ru.itis.inform;
 
-public interface List {
-    void add(int element);
-    void remove(int element);
+public interface List<T> {
+    void add(T element);
+
+    void remove(T element);
 }

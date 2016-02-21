@@ -1,16 +1,20 @@
 package ru.itis.inform;
 
-public class LinkedList implements List {
-    private Node first;
+public class LinkedList<T> implements List<T> {
+    private Node<T> first;
 
-    private int length;
+    private int count;
 
     public LinkedList() {
         this.first = null;
-        this.length = 0;
+        this.count = 0;
     }
 
-    public void add(int element) {
+    public Node<T> getFirst() {
+        return this.first;
+    }
+
+    public void add(T element) {
         Node newNode = new Node(element);
 
         if (first == null) {
@@ -19,12 +23,12 @@ public class LinkedList implements List {
             newNode.setNext(this.first);
             this.first = newNode;
         }
-        length += 1;
+        count += 1;
     }
 
-    public void remove(int element) {
+    public void remove(T element) {
         Node node = this.first;
-        for(int i = 0; i < length - 1; i++) {
+        for(int i = 0; i < count - 1; i++) {
             if(i == 0 && node.getValue() == element) {
                 first = node.getNext();
                 return;
@@ -34,7 +38,7 @@ public class LinkedList implements List {
                 if(i == 0) {
                     first = node;
                     return;
-                } else if (i == length - 1) {
+                } else if (i == count - 1) {
                     node.setNext(null);
                     return;
                 } else {
@@ -45,7 +49,11 @@ public class LinkedList implements List {
 
             node = node.getNext();
         }
-        length--;
+        count--;
+    }
+
+    public Iterator<T> iterator() {
+        return new LinkedListIteratorImpl<T>(this.first);
     }
 
     public void show() {
