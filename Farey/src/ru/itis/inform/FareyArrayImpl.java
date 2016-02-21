@@ -50,6 +50,10 @@ public class FareyArrayImpl {
         }
     }
 
+    public RationalNumber[] getArray() {
+        return array;
+    }
+
     public void show(){
         for(int i = 0; i < currentLength - 1; i++) {
             System.out.print(array[i].getP() + "/" + array[i].getQ() + ", ");
