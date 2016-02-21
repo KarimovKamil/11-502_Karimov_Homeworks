@@ -5,7 +5,7 @@ public interface Graph {
 
     void addEdge(int vertexA, int vertexB, int weightEdge);
 
-    void runFloyd();
+    int[][] runFloyd();
 
     void showMatrix();
 

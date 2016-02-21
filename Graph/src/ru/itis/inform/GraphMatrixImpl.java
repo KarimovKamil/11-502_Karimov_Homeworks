@@ -57,7 +57,7 @@ public class GraphMatrixImpl implements DirectedGraph, Graph {
         }
     }
 
-    public void runFloyd(){
+    public int[][] runFloyd(){
         generateDMatrix();
         for (int k = 0; k < verticesCount; k++){
             for (int i = 0; i < verticesCount; i++){
@@ -66,6 +66,7 @@ public class GraphMatrixImpl implements DirectedGraph, Graph {
                 }
             }
         }
+        return dmatrix;
     }
 
     public void showMatrix() {

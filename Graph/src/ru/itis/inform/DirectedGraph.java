@@ -5,7 +5,7 @@ public interface DirectedGraph {
 
     void addDirectedEgde(int vertixFrom, int vertixTo, int weightEdge);
 
-    void runFloyd();
+    int[][] runFloyd();
 
     void showMatrix();
 
