@@ -1,0 +1,12 @@
+main 55
+same 13
+raid 66
+sale 50
+rain 25
+lane 18
+vine 10
+miss 3
+bone 87
+tool 76
+road 77
+road 47
