@@ -5,8 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ru.itis.inform</groupId>
-    <artifactId>PeopleSort</artifactId>
+    <artifactId>Lists</artifactId>
     <version>0.1</version>
+
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -14,12 +15,7 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
-
-        <dependency>
-            <groupId>ru.itis.inform</groupId>
-            <artifactId>Lists</artifactId>
-            <version>0.1</version>
-        </dependency>
     </dependencies>
+
 
 </project>

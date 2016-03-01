@@ -1,8 +1,8 @@
-package People;
-import LinkedList.*;
-import People.*;
-
 import org.junit.Test;
+import ru.itis.inform.Human;
+import ru.itis.inform.LinkedList;
+import ru.itis.inform.PeopleReaderWriter;
+import ru.itis.inform.PeopleSorter;
 
 import static org.junit.Assert.*;
 

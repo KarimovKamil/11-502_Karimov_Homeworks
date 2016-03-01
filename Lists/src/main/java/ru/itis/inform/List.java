@@ -1,4 +1,4 @@
-package LinkedList;
+package ru.itis.inform;
 
 public interface List<T> {
 

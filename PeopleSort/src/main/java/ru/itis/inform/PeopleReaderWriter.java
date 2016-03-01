@@ -1,6 +1,5 @@
-package People;
+package ru.itis.inform;
 
-import LinkedList.*;
 import java.io.*;
 import java.nio.file.*;
 

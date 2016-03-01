@@ -1,4 +1,4 @@
-package LinkedList;
+package ru.itis.inform;
 
 public class LinkedList<T> implements List<T> {
     private int length;

@@ -1,7 +1,4 @@
-package People;
-
-import LinkedList.*;
-import ArrayList.*;
+package ru.itis.inform;
 
 public class PeopleSorter {
     public LinkedList<Human> sort(LinkedList<Human> list) {

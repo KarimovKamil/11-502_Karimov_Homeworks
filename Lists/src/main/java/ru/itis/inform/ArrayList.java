@@ -1,6 +1,4 @@
-package ArrayList;
-
-import LinkedList.*;
+package ru.itis.inform;
 
 public class ArrayList<T> {
     private int count = 0;

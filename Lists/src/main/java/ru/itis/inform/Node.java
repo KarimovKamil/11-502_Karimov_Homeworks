@@ -1,4 +1,4 @@
-package LinkedList;
+package ru.itis.inform;
 
 public class Node<T> {
     private T value;

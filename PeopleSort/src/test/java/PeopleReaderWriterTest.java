@@ -1,5 +1,3 @@
-package People;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -7,7 +5,9 @@ import static org.junit.Assert.*;
 
 import java.io.*;
 import java.util.Map;
-import LinkedList.*;
+import ru.itis.inform.Human;
+import ru.itis.inform.LinkedList;
+import ru.itis.inform.PeopleReaderWriter;
 
 public class PeopleReaderWriterTest {
     private PeopleReaderWriter readerWriter;

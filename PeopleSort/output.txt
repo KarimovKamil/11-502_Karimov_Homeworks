@@ -1,22 +1,12 @@
 miss 3
-
 vine 10
-
 same 13
-
 lane 18
-
 rain 25
-
 road 47
-
 sale 50
-
 main 55
-
 raid 66
-
 tool 76
 road 77
-
 bone 87
