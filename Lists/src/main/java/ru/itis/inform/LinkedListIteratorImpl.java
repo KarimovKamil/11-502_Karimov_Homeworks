@@ -1,5 +1,7 @@
 package ru.itis.inform;
 
+import java.util.NoSuchElementException;
+
 public class LinkedListIteratorImpl<T> implements Iterator<T> {
     Node<T> current;
 
@@ -7,41 +9,50 @@ public class LinkedListIteratorImpl<T> implements Iterator<T> {
         this.current = first;
     }
 
+
     public boolean hasNext() {
-        return this.current != null;
+        return current!= null;
     }
 
-    public boolean hasPrevious() {
-        return this.current.getPrevious() != null;
-    }
 
-    public T next() {
-        T value = current.getValue();
-        current = current.getNext();
-        return value;
-    }
 
-    public T previous() {
-        if (hasPrevious()){
-            T value = this.current.getPrevious().getValue();
-            this.current = current.getPrevious();
-            return value;
-        } else throw new NullPointerException();
+    public void next() {
+        this.current = current.getNext();
     }
 
     public T peekNext() {
-        return current.getNext().getValue();
+        return current.getValue();
+    }
+
+    public Node getNext() {
+        return current;
+    }
+
+
+
+
+    public void previous() {
+        if (current.getPrevious() != null) {
+            current = current.getPrevious();
+        } else {
+            throw new NoSuchElementException();
+        }
     }
 
     public T peekPrevious() {
-        return current.getPrevious().getValue();
+        if (current.getPrevious() != null) {
+            return current.getPrevious().getValue();
+        } else {
+            throw new NoSuchElementException();
+        }
     }
 
+
     public void insert(T element) {
-        Node<T> newNode = new Node<T>(element);
-        newNode.setNext(current);
-        newNode.setPrevious(current.getPrevious());
-        current.getPrevious().setNext(newNode);
-        current.setPrevious(newNode);
+        Node newOne = new Node(element);
+        newOne.setNext(current);
+        newOne.setPrevious(current.getPrevious());
+        current.getPrevious().setNext(newOne);
+        current.setPrevious(newOne);
     }
 }

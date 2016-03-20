@@ -1,78 +1,49 @@
 package ru.itis.inform;
 
 public class ArrayList<T> {
-    private int count = 0;
-    private static final int DEFAULT_SIZE = 10;
-    private Object[] elements;
+    private Object [] elements;
+    private int size = 0;
+    private int index = 0;
+    private final int defaultSize = 100;
 
     public ArrayList() {
-        initArrayList(DEFAULT_SIZE);
+        this.elements = new Object[defaultSize];
     }
 
-    public ArrayList(int count) {
-        initArrayList(count);
-    }
-
-    private void initArrayList(int size) {
+    public ArrayList(int size) {
         this.elements = new Object[size];
     }
 
-    public void add(T element) {
-        set(count++, element);
+    public int getSize() {
+        return this.size;
     }
 
-    public void set(int index, T element) {
-        if (index > elements.length)
-            throw new IndexOutOfBoundsException();
+    public void growArray() {
+        Object[] newOne = new Object[elements.length * 2];
+        for (int i = 0 ; i < elements.length; i++) {
+            newOne[i] = elements[i];
+        }
+        this.elements = newOne;
+    }
 
-        if (index == elements.length)
-            ensureCapacity();
-
+    public void add(T element) {
+        if (index == elements.length) {
+            growArray();
+        }
         elements[index] = element;
+        this.index++;
+        this.size++;
     }
 
     public T get(int index) {
-        if (index > elements.length|| index < 0)
+        if (index >= size || index < 0){
             throw new IndexOutOfBoundsException();
-        else return (T) elements[index];
-    }
-
-    public LinkedList toLinkedList() {
-        LinkedList result = new LinkedList();
-        for (int i = 0; i < elements.length; i++) {
-            if (elements[i] != null) {
-                LinkedList element;
-
-                if(elements[i] instanceof LinkedList) {
-                    element = (LinkedList) elements[i];
-                } else {
-                    element = new LinkedList();
-                    element.add(elements[i]);
-                }
-
-                if (result.getFirst() == null) {
-                    result = element;
-                } else {
-                    result.append(element);
-                }
-            }
         }
-        return result;
+        return (T)elements[index];
     }
 
-    public int getCount() {
-        return this.count;
+    public void set(int index, T element) {
+        this.elements[index] = element;
     }
 
-    private void ensureCapacity() {
-        int newSize = count * 3 / 2;
-        Object[] newArray = new Object[newSize];
-
-        for (int i = 0; i < count; i++) {
-            newArray[i] = elements[i];
-        }
-
-        this.elements = newArray;
-        count = newSize;
-    }
 }
