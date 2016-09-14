@@ -3,8 +3,11 @@ package Dao;
 import Dao.Models.Car;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.LinkedList;
+import java.util.List;
 
 public class OldJdbcVersion implements CarsDao {
     public OldJdbcVersion() {
@@ -58,10 +61,50 @@ public class OldJdbcVersion implements CarsDao {
 
     public void deleteCar(int id) {
         try {
-          Statement statement = connectToDB();
+            Statement statement = connectToDB();
             statement.execute("DELETE FROM cars_info WHERE auto_id = " + id + ";");
         } catch (SQLException e) {
 
         }
+    }
+
+    public Car getCarInfo(int id) {
+        Car car = null;
+        try {
+            Statement statement = connectToDB();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM cars_info WHERE auto_id = " + id + ";");
+
+            if (resultSet.next()) {
+                car = new Car(resultSet.getInt("auto_id"),
+                        resultSet.getString("mark"),
+                        resultSet.getString("numberplate"),
+                        resultSet.getString("release_date"),
+                        resultSet.getString("car_owner"));
+            }
+        } catch (SQLException e) {
+
+        }
+
+        return car;
+    }
+
+    public List<Car> getTable() {
+        List<Car> cars = new LinkedList<Car>();
+        try {
+            Statement statement = connectToDB();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM cars_info;");
+
+            while (resultSet.next()) {
+                cars.add(new Car(resultSet.getInt("auto_id"),
+                        resultSet.getString("mark"),
+                        resultSet.getString("numberplate"),
+                        resultSet.getString("release_date"),
+                        resultSet.getString("car_owner")));
+            }
+        } catch (SQLException e) {
+
+        }
+
+        return cars;
     }
 }

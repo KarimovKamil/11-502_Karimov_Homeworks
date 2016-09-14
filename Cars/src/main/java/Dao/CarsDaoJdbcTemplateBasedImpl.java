@@ -1,8 +1,11 @@
 package Dao;
 
 import Dao.Models.Car;
+import Dao.Models.CarMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+
+import java.util.List;
 
 public class CarsDaoJdbcTemplateBasedImpl implements CarsDao {
     private String url = "jdbc:postgresql://localhost:5432/dao";
@@ -33,5 +36,15 @@ public class CarsDaoJdbcTemplateBasedImpl implements CarsDao {
 
     public void deleteCar(int id) {
         jdbcTemplate.execute("DELETE FROM cars_info WHERE auto_id = " + id + ";");
+    }
+
+    public Car getCarInfo(int id) {
+        List<Car> car = jdbcTemplate.query("SELECT * FROM cars_info WHERE = " + id + ";", new CarMapper());
+        return car.get(0);
+    }
+
+    public List<Car> getTable() {
+        List<Car> cars = jdbcTemplate.query("SELECT * FROM cars_info;", new CarMapper());
+        return cars;
     }
 }
